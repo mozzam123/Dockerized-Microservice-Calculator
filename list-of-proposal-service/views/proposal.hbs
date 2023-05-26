@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="css/proposal.css">
+<div class="container">
+
+  <div class="username-section">
+    <span class="username-label">Username:</span> {{currentUser}}
+  </div>
+
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th scope="col">Sr No</th>
+        <th scope="col">Username</th>
+        <th scope="col">User ID</th>
+        <th scope="col">Calculation ID</th>
+        <th scope="col">Interest</th>
+        <th scope="col">Principal Amount</th>
+        <th scope="col">Total Amount</th>
+        <th scope="col">Remarks</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each userData}}
+      <tr>
+        <th scope="row">{{@index}}</th>
+        <td>{{username}}</td>
+        <td>{{userId}}</td>
+        <td>{{calculationId}}</td>
+        <td>{{interest}}</td>
+        <td>{{principalAmt}}</td>
+        <td>{{totalAmt}}</td>
+        <td>{{remarks}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <div class="buttons-container">
+    <form action="/proposal" method="post">
+      <button type="submit" name="calculator">Calculator</button>
+    </form>
+
+    <form action="/" method="get">
+      <button type="submit" name="login">Back to login</button>
+    </form>
+  </div>
+</div>
