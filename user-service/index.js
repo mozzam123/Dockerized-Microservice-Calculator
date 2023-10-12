@@ -1,13 +1,14 @@
 // Import required packages
 const express = require("express");
 const path = require("path");
+require("dotenv").config()
 
 // Create Express app instance
 const app = express();
 
 
 // Set port number
-const port = 8000;
+const PORT = process.env.PORT | 8000;
 
 // Import and connect to database
 require("./src/db/db");
@@ -38,6 +39,6 @@ app.use(loginRoutes);
 app.use(regisRoutes);
 
 // Start listening for requests on the specified port
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

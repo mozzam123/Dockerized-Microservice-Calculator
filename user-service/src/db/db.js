@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://mongo_db:27017/userDB")
+const DB = process.env.DATABASE
+mongoose.connect(DB)
   .then(() => {
-    console.log("Mongo Connected");
+    console.log("Mongo Connected for User Service");
   })
   .catch((error) => {
     console.log(error);
