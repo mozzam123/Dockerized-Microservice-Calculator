@@ -1,16 +1,16 @@
 // Import required packages
 const express = require("express");
-const path = require("path");
+const path = require("path")
+require("dotenv").config()
 
 // Create Express app instance
 const app = express();
 
 // Set port number
-const port = 8888;
+const PORT = process.env.PORT | 8888;
 
 // Import and connect to database
 require("./db/db");
-
 
 
 // Define template path
@@ -35,6 +35,6 @@ app.use(calcRoutes);
 
 
 // Start listening for requests on the specified port
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-  });
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

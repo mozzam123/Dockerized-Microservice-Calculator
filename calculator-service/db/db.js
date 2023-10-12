@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const DB = process.env.DATABASE
 
-mongoose.connect("mongodb://mongo_db:27017/user_calculations")
+mongoose.connect(DB)
   .then(() => {
     console.log("Mongo Connected for Caclulator Service");
   })

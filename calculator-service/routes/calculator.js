@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const session = require("express-session");
-const { Kafka } = require("kafkajs");
+// const { Kafka } = require("kafkajs");
 
 const Calculation = require("../model/model");
 
@@ -24,32 +24,32 @@ function generateNumericId(length) {
 }
 
 // Create a Kafka consumer
-const kafka = new Kafka({
-  clientId: "my-app",
-  brokers: ["localhost:9092"], // Update with your Kafka broker's address
-});
-const consumer = kafka.consumer({ groupId: "my-group" });
+// const kafka = new Kafka({
+//   clientId: "my-app",
+//   brokers: ["localhost:9092"], // Update with your Kafka broker's address
+// });
+// const consumer = kafka.consumer({ groupId: "my-group" });
 
 // Subscribe to the 'user-credentials' topic
-async function runConsumer() {
-  await consumer.connect();
-  await consumer.subscribe({ topic: "user-credentials" });
+// async function runConsumer() {
+//   await consumer.connect();
+//   await consumer.subscribe({ topic: "user-credentials" });
 
-  await consumer.run({
-    eachMessage: async ({ topic, partition, message }) => {
-      // Assuming the username is stored as a string in the message value
-      const messageValue = JSON.parse(message.value.toString());
-      const { username } = messageValue;
-      console.log("Received username:", username);
+//   await consumer.run({
+//     eachMessage: async ({ topic, partition, message }) => {
+//       // Assuming the username is stored as a string in the message value
+//       const messageValue = JSON.parse(message.value.toString());
+//       const { username } = messageValue;
+//       console.log("Received username:", username);
 
-      newUser = username;
-    },
-  });
-}
+//       newUser = username;
+//     },
+//   });
+// }
 
-runConsumer().catch((error) => {
-  console.error("Error running Kafka consumer:", error);
-});
+// runConsumer().catch((error) => {
+//   console.error("Error running Kafka consumer:", error);
+// });
 
 // Calculator Page
 router.get("/calc", (req, res) => {
