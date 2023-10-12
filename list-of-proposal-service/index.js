@@ -1,12 +1,13 @@
 // Import required packages
 const express = require("express");
 const path = require("path");
+require("dotenv").config()
 
 // Create Express app instance
 const app = express();
 
 // Set port number
-const port = 9000;
+const PORT = process.env.PORT | 9000;
 
 // Define template path
 const template_path = path.join(__dirname, "views");
@@ -30,6 +31,6 @@ app.use(proposalRoute);
 
 
 // Start listening for requests on the specified port
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-  });
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
