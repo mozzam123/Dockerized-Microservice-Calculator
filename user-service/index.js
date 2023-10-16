@@ -1,6 +1,7 @@
 // Import required packages
 const express = require("express");
 const path = require("path");
+const connectDB = require("./src/db/db");
 require("dotenv").config()
 
 // Create Express app instance
@@ -11,13 +12,11 @@ const app = express();
 const PORT = process.env.PORT | 8000;
 
 // Import and connect to database
-require("./src/db/db");
+connectDB;
 
 // Define template path
 const template_path = path.join(__dirname, "views");
 
-// Import employee model
-const userCollectionsns = require("./src/model/model");
 
 // Import routes
 const loginRoutes = require("./routes/login");
