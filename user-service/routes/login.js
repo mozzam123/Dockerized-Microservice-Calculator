@@ -4,7 +4,7 @@ const router = express.Router();
 // const redis = require("redis");
 const path = require("path");
 const { Kafka, Partitioners } = require("kafkajs");
-
+const PROP_PORT = process.env.PROP_PORT
 
 // Create Kafka producer instance
 const kafka = new Kafka({ brokers: ["localhost:9092"] });
@@ -73,7 +73,7 @@ router.post('/login', async (req, res) => {
       await producer.disconnect();
       console.log('Disconnected Producer');
 
-      res.redirect('http://127.0.0.1:3333/proposal');
+      res.redirect(`http://127.0.0.1:${PROP_PORT}/proposal`);
       console.log('Redirected');
 
     } else {

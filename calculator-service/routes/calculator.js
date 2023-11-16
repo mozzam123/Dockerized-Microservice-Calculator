@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const session = require("express-session");
 const { Kafka } = require("kafkajs");
-const PORT = process.env.PORT
+const USER_PORT = process.env.USER_PORT
+const PROP_PORT = process.env.PROP_PORT
 const Calculation = require("../model/model");
 
 // Define a variable to store the username
@@ -57,7 +58,7 @@ router.get("/calc", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  res.redirect(`http://127.0.0.1:2222/calc`);
+  res.redirect(`http://127.0.0.1:${USER_PORT}/`);
 });
 
 router.post("/calc", async (req, res) => {
@@ -103,7 +104,7 @@ router.post("/calc", async (req, res) => {
     console.error("Error saving calculation:", error);
   }
   
-  res.redirect("http://127.0.0.1:3333/proposal");
+  res.redirect(`http://127.0.0.1:${PROP_PORT}/proposal`);
 });
 
 module.exports = router;

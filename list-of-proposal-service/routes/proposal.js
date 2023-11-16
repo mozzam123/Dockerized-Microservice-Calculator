@@ -3,7 +3,10 @@ const router = express.Router();
 const { Kafka } = require("kafkajs");
 const { MongoClient } = require("mongodb");
 const DB = process.env.DATABASE
-const PORT = process.env.PORT
+const CALC_PORT = process.env.CALC_PORT
+const PROP_PORT = process.env.PROP_PORT
+const USER_PORT = process.env.USER_PORT
+
 
 // Create Kafka consumer instance
 const kafka = new Kafka({
@@ -34,14 +37,15 @@ consumer.run({
 
 // Function to fetch user data from MongoDB
 async function fetchUserData(username) {
-  const url = `${DB}`;
-  const dbName = "user_calculations";
+  const url = "mongodb+srv://mozzam:mozzam@latestcluster.wdjuvrc.mongodb.net/Calculator_Microservice"
+  const dbName = "Calculator_Microservice";
   const client = new MongoClient(url);
 
   try {
     await client.connect();
     const db = client.db(dbName);
     const collection = db.collection("calculations");
+    console.log('collections: ', collection);
     let documents;
 
     if (username === "admin") {
@@ -55,6 +59,7 @@ async function fetchUserData(username) {
         .toArray();
     } else {
       documents = await collection.find({ username }).toArray();
+      console.log('single document: ', documents);
     }
 
     return documents;
@@ -66,7 +71,7 @@ async function fetchUserData(username) {
 }
 
 router.get("/", async (req, res) => {
-  res.redirect(`http://127.0.0.1:${PORT}/`);
+  res.redirect(`http://127.0.0.1:${USER_PORT}/`);
 });
 
 // Proposal Page
@@ -91,7 +96,7 @@ router.get("/proposal", async (req, res) => {
 
 router.post("/proposal", (req, res) => {
   console.log("parameters is : ", req.body);
-  res.redirect(`http://127.0.0.1:${PORT}/calc`);
+  res.redirect(`http://127.0.0.1:${CALC_PORT}/calc`);
 });
 
 module.exports = router;

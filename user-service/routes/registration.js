@@ -1,13 +1,8 @@
 // Import required modules and initialize router
 const express = require("express");
 const router = express.Router();
-
-// Import database and path modules
 const path = require("path");
-
 const db = require("../src/db/db");
-
-
 const template_path = path.join(__dirname, "views");
 
 // Import employee collection model

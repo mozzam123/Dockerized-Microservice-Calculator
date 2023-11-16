@@ -9,7 +9,7 @@ const app = express();
 
 
 // Set port number
-const PORT = process.env.PORT | 1111;
+const USER_PORT = process.env.USER_PORT | 1111;
 
 // Import and connect to database
 connectDB;
@@ -38,6 +38,6 @@ app.use(loginRoutes);
 app.use(regisRoutes);
 
 // Start listening for requests on the specified port
-app.listen(PORT, () => {
-  console.log(`Server running on port http://127.0.0.1:${PORT}`);
+app.listen(USER_PORT, () => {
+  console.log(`Server running on port http://127.0.0.1:${USER_PORT}`);
 });
