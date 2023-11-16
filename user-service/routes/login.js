@@ -1,7 +1,7 @@
 // Import required modules and libraries
 const express = require("express");
 const router = express.Router();
-const redis = require("redis");
+// const redis = require("redis");
 const path = require("path");
 const { Kafka, Partitioners } = require("kafkajs");
 
@@ -14,19 +14,19 @@ const producer = kafka.producer();
 // Set up template path for views
 const template_path = path.join(__dirname, "views");
 
-const client = redis.createClient({
-  url: 'redis://redis:6379'
-  });
-client.connect();
+// const client = redis.createClient({
+//   url: 'redis://redis:6379'
+//   });
+// client.connect();
 
 
-client.on("connect", () => {
-  console.log("Redis connected");
-});
+// client.on("connect", () => {
+//   console.log("Redis connected");
+// });
 
-client.on("error", (err) => {
-  console.error('*******error*****: ',err);
-});
+// client.on("error", (err) => {
+//   console.error('*******error*****: ',err);
+// });
 
 // Set up database connection and model
 require("../src/db/db");
@@ -51,9 +51,9 @@ router.post('/login', async (req, res) => {
     const getPassword = await userCollections.findOne({password: loginPassword,});
 
     if (getName && getPassword) {
-      // Set Data to Redis
-      client.SETEX(loginName, 3600, loginPassword);
-      console.log(`Saved in Redis with key: ${loginName}`);
+      // // Set Data to Redis
+      // client.SETEX(loginName, 3600, loginPassword);
+      // console.log(`Saved in Redis with key: ${loginName}`);
 
       // Create message to be sent to Kafka topic
       const message = {
@@ -73,7 +73,7 @@ router.post('/login', async (req, res) => {
       await producer.disconnect();
       console.log('Disconnected Producer');
 
-      res.redirect('http://127.0.0.1:9000/proposal');
+      res.redirect('http://127.0.0.1:3333/proposal');
       console.log('Redirected');
 
     } else {

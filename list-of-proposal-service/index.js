@@ -7,7 +7,7 @@ require("dotenv").config()
 const app = express();
 
 // Set port number
-const PORT = process.env.PORT | 9000;
+const PORT = process.env.PORT | 3333;
 
 // Define template path
 const template_path = path.join(__dirname, "views");
@@ -32,5 +32,5 @@ app.use(proposalRoute);
 
 // Start listening for requests on the specified port
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on http://127.0.0.1:${PORT}`);
 });
