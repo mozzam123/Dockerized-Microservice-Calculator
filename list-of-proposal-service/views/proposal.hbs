@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="css/proposal.css">
 <div class="container">
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
   <div class="username-section">
     <span class="username-label">Username:</span> {{currentUser}}
   </div>
@@ -16,6 +17,7 @@
         <th scope="col">Principal Amount</th>
         <th scope="col">Total Amount</th>
         <th scope="col">Remarks</th>
+        <th scope="col">Chart</th>
       </tr>
     </thead>
     <tbody>
@@ -29,6 +31,8 @@
         <td>{{principalAmt}}</td>
         <td>{{totalAmt}}</td>
         <td>{{remarks}}</td>
+        <td><button type="button" class="btn btn-primary">Primary</button></td>
+
       </tr>
       {{/each}}
     </tbody>
