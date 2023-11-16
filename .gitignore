@@ -1,0 +1,10 @@
+# calculator-service/node_modules/
+# list-of-proposal-service/node_modules/
+# user-service/node_modules/
+# /calculator-service/node_modules/
+# /list-of-proposal-service/node_modules/
+# /user-service/node_modules/
+
+\calculator-service\node_modules\
+\list-of-proposal-service\node_modules\
+\user-service\node_modules\
