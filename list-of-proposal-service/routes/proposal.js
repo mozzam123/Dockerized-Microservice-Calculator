@@ -45,7 +45,6 @@ async function fetchUserData(username) {
     await client.connect();
     const db = client.db(dbName);
     const collection = db.collection("calculations");
-    console.log('collections: ', collection);
     let documents;
 
     if (username === "admin") {
@@ -59,7 +58,6 @@ async function fetchUserData(username) {
         .toArray();
     } else {
       documents = await collection.find({ username }).toArray();
-      console.log('single document: ', documents);
     }
 
     return documents;
