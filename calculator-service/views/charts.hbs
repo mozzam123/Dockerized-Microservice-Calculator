@@ -1,11 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charts</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Charts</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.css" />
 </head>
+
 <body>
-    <h1>Charts page</h1>
+  <h1>Charts page</h1>
+
+  <!-- Display Pie Chart -->
+  <div style="width: 50%; float: left;">
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <!-- Display Line Chart -->
+  <div style="width: 50%; float: left;">
+    <canvas id="lineChart"></canvas>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+  <script>
+    // Assuming calculationData is an object with properties for pie and line chart data
+    var calculationData = {
+      pieChartLabels: ['Principal Amount', 'Interest', 'Total Amount'],
+      pieChartData: [{{calculationData.principalAmt}}, {{calculationData.interest}}, {{calculationData.totalAmt}}],
+      lineChartLabels: ['Principal Amount', 'Interest', 'Total Amount'],
+      lineChartData: [{{calculationData.principalAmt}}, {{calculationData.interest}}, {{calculationData.totalAmt}}],
+    };
+
+    // Pie Chart
+    var ctxPie = document.getElementById('pieChart').getContext('2d');
+    var pieChart = new Chart(ctxPie, {
+      type: 'pie',
+      data: {
+        labels: calculationData.pieChartLabels,
+        datasets: [{
+          data: calculationData.pieChartData,
+          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'], // Add more colors if needed
+        }],
+      },
+    });
+
+    // Line Chart
+    var ctxLine = document.getElementById('lineChart').getContext('2d');
+    var lineChart = new Chart(ctxLine, {
+      type: 'line',
+      data: {
+        labels: calculationData.lineChartLabels,
+        datasets: [{
+          label: 'Line Chart',
+          data: calculationData.lineChartData,
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1,
+          fill: false,
+        }],
+      },
+    });
+  </script>
 </body>
+
 </html>

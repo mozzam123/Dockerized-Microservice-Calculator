@@ -14,15 +14,15 @@ const calculationSchema = new mongoose.Schema({
     required: true,
   },
   interest: {
-    type: String,
+    type: Number,
     required: true,
   },
   principalAmt: {
-    type: String,
+    type: Number,
     required: true,
   },
   totalAmt: {
-    type: String,
+    type: Number,
     required: true,
   },
   createdAt: {

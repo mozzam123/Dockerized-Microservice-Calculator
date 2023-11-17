@@ -54,16 +54,19 @@ runConsumer().catch((error) => {
 
 // Calculator Page
 router.get("/calc", async (req, res) => {
-  const calculationId = req.query.calculationId
-  const calculationData = await Calculation.findOne({ calculationId: calculationId })
-
-  res.render("calc", { calculationData: calculationData });
+  res.render("calc");
 });
 
 
 // Charts Page
-router.get("/charts", (req,res) =>{
-  res.render("charts")
+router.get("/charts", async (req, res) => {
+  const calculationId = req.query.calculationId
+  const calculationData = await Calculation.findOne({ calculationId: calculationId })
+  calculationData.calculationId = calculationData.calculationId.toString()
+
+  console.log('**************', calculationData);
+
+  res.render("charts", { calculationData: calculationData })
 })
 
 
