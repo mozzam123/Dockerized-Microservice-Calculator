@@ -79,7 +79,6 @@ router.get("/proposal", async (req, res) => {
   try {
     const currentUser = latestUsername;
     const userData = await fetchUserData(currentUser);
-    console.log(userData);
 
     // Update the remarks field for the last calculation
     if (userData.length > 0) {
@@ -95,7 +94,6 @@ router.get("/proposal", async (req, res) => {
 
 
 router.post("/proposal", (req, res) => {
-  console.log("parameters is : ", req.body);
   res.redirect(`http://127.0.0.1:${CALC_PORT}/calc`);
 });
 

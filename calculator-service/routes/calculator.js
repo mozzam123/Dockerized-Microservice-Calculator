@@ -64,8 +64,6 @@ router.get("/charts", async (req, res) => {
   const calculationData = await Calculation.findOne({ calculationId: calculationId })
   calculationData.calculationId = calculationData.calculationId.toString()
 
-  console.log('**************', calculationData);
-
   res.render("charts", { calculationData: calculationData })
 })
 

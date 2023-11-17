@@ -6,25 +6,72 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Charts</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.css" />
+  <script src="js/charts.js"></script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 10px;
+      box-sizing: border-box;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    h1 {
+      text-align: center;
+      color: #343a40;
+    }
+
+    .chart-container {
+      flex: 1;
+      max-width: 45%; /* Adjusted width for side-by-side layout */
+      margin: 10px; /* Reduced margin */
+    }
+
+    canvas {
+      width: 100% !important;
+      height: auto;
+    }
+
+    .button-container {
+      width: 100%;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>Charts page</h1>
 
-  <!-- Display Pie Chart -->
-  <div style="width: 50%; float: left;">
-    <canvas id="pieChart"></canvas>
+  <div class="chart-container">
+    <!-- Display Pie Chart -->
+    <div style="width: 100%; margin: auto;">
+      <canvas id="pieChart"></canvas>
+    </div>
   </div>
 
-  <!-- Display Line Chart -->
-  <div style="width: 50%; float: left;">
-    <canvas id="lineChart"></canvas>
+  <div class="chart-container">
+    <!-- Display Line Chart -->
+    <div style="width: 100%; margin: auto;">
+      <canvas id="lineChart"></canvas>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button type="button" onclick="calculatorPage()" class="btn btn-primary">Calculator</button>
+  </div>
+  <div class="button-container">
+    <button type="button" onclick="loginPage()" class="btn btn-danger">Log Out</button>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
   <script>
-    // Assuming calculationData is an object with properties for pie and line chart data
     var calculationData = {
       pieChartLabels: ['Principal Amount', 'Interest', 'Total Amount'],
       pieChartData: [{{calculationData.principalAmt}}, {{calculationData.interest}}, {{calculationData.totalAmt}}],
@@ -40,9 +87,13 @@
         labels: calculationData.pieChartLabels,
         datasets: [{
           data: calculationData.pieChartData,
-          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'], // Add more colors if needed
+          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
         }],
       },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+      }
     });
 
     // Line Chart
@@ -59,6 +110,10 @@
           fill: false,
         }],
       },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+      }
     });
   </script>
 </body>
