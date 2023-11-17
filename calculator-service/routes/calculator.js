@@ -61,6 +61,12 @@ router.get("/calc", async (req, res) => {
 });
 
 
+// Charts Page
+router.get("/charts", (req,res) =>{
+  res.render("charts")
+})
+
+
 // Calculator Page
 router.get("/", (req, res) => {
   res.redirect(`http://127.0.0.1:${USER_PORT}/`);
