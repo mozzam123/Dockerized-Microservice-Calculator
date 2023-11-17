@@ -199,10 +199,10 @@ console.log(P);
 // // alert("The form was submitted")
 // // document.getElementById(cp)
 // }
-loginForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+// loginForm.addEventListener("submit", (e) => {
+//   e.preventDefault();
 
-  console.log("principalAmount", principalAmount);
-  console.log("intrest", R, N, monthlyemi);
-  console.log('P is: ', P);
-});
+//   console.log("principalAmount", principalAmount);
+//   console.log("intrest", R, N, monthlyemi);
+//   console.log('P is: ', P);
+// });

@@ -31,7 +31,8 @@
         <td>{{principalAmt}}</td>
         <td>{{totalAmt}}</td>
         <td>{{remarks}}</td>
-        <td><button type="button" class="btn btn-primary">Primary</button></td>
+        <td><button type="button" class="btn btn-primary" data-calculation-id="{{calculationId}}">Show Chart</button>
+        </td>
 
       </tr>
       {{/each}}
@@ -48,3 +49,16 @@
     </form>
   </div>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const primaryButtons = document.querySelectorAll('.btn-primary');
+
+    primaryButtons.forEach(button => {
+      button.addEventListener('click', function () {
+        const calculationId = this.getAttribute('data-calculation-id');
+        console.log('********calculation id: ', calculationId)
+        window.location.href = `http://127.0.0.1:2222/calc?calculationId=${calculationId}`;
+      });
+    });
+  });
+</script>

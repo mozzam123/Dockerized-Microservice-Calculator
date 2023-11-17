@@ -53,14 +53,22 @@ runConsumer().catch((error) => {
 });
 
 // Calculator Page
-router.get("/calc", (req, res) => {
-  res.render("calc");
+router.get("/calc", async (req, res) => {
+  const calculationId = req.query.calculationId
+  const calculationData = await Calculation.findOne({ calculationId: calculationId })
+
+  res.render("calc", { calculationData: calculationData });
 });
 
+
+// Calculator Page
 router.get("/", (req, res) => {
   res.redirect(`http://127.0.0.1:${USER_PORT}/`);
 });
 
+
+
+// POST Calculator Page
 router.post("/calc", async (req, res) => {
   const interest = parseFloat(req.body.interest.replace(/[^0-9.-]+/g, ""));
   const principalAmt = parseFloat(req.body.P_amount.replace(/[^0-9.-]+/g, ""));
@@ -73,7 +81,6 @@ router.post("/calc", async (req, res) => {
     req.session.userId = userId;
   }
   const calculationId = generateNumericId(6);
-  console.log('Generate calculation id');
 
   // Find the latest calculation
   const latestCalculation = await Calculation.findOne({}, {}, { sort: { createdAt: -1 } });
@@ -103,7 +110,7 @@ router.post("/calc", async (req, res) => {
   } catch (error) {
     console.error("Error saving calculation:", error);
   }
-  
+
   res.redirect(`http://127.0.0.1:${PROP_PORT}/proposal`);
 });
 
