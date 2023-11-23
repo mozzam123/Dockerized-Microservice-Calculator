@@ -95,4 +95,9 @@ router.post("/proposal", (req, res) => {
   res.redirect(`http://127.0.0.1:${CALC_PORT}/calc`);
 });
 
+
+router.post("/investment", (req, res) => {
+  res.redirect(`http://127.0.0.1:${USER_PORT}/`);
+});
+
 module.exports = router;
