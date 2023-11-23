@@ -31,7 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 // Set view engine and template path
 app.set("view engine", "hbs");
 app.set("views", template_path);
-app.set("views", path.join(__dirname, "views"));
+// app.set("views", path.join(__dirname, "views"));
 
 // Register routes
 app.use(loginRoutes);
