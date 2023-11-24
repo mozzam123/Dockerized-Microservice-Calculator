@@ -38,8 +38,6 @@ router.get("/", async (req, res) => {
         nav: item.nav
       })),
     }));
-    console.log(formattedResponses);
-    
 
     res.render("home", { apiResponses: apiResponses });
   } catch (error) {
