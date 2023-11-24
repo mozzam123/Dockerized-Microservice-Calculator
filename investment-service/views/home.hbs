@@ -7,38 +7,54 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
 
+        h1 {
+            text-align: center;
+        }
 
+        .table-container {
+            width: 80%; /* Set your desired width */
+            overflow-x: auto;
+            margin: 20px auto;
+        }
+    </style>
 </head>
 
 <body>
     <h1>Mutual Funds</h1>
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th>Date</th>
-                <th>Scheme Name</th>
-                <th>Fund House</th>
-                <th>Scheme Type</th>
-                <th>Nav</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each apiResponses}}
-            <tr>
-                {{#each data}}
-                <td>{{date}}</td>
+    <div class="table-container">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Date</th>
+                    <th>Scheme Name</th>
+                    <th>Fund House</th>
+                    <th>Scheme Type</th>
+                    <th>Nav</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each apiResponses}}
+                <tr>
+                    {{#each data}}
+                    <td>{{date}}</td>
+                    {{/each}}
+                    <td>{{meta.scheme_name}}</td>
+                    <td>{{meta.fund_house}}</td>
+                    <td>{{meta.scheme_type}}</td>
+                    {{#each data}}
+                    <td>{{nav}}</td>
+                    {{/each}}
+                </tr>
                 {{/each}}
-                <td>{{meta.scheme_name}}</td>
-                <td>{{meta.fund_house}}</td>
-                <td>{{meta.scheme_type}}</td>
-                {{#each data}}
-                <td>{{nav}}</td>
-                {{/each}}
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
