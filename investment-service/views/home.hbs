@@ -1,12 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=
-    , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            overflow-y: scroll;
+            display: block;
+            max-height: calc(4 * 56px); /* 4 lines at 56px each */
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        thead, tbody {
+            display: table;
+            width: 100%;
+        }
+
+        tbody {
+            overflow-y: auto;
+            max-height: calc(4 * 56px); /* 4 lines at 56px each */
+            display: block;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Investment page</h1>
+    <h1>Mutual Funds</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Scheme Name</th>
+                <th>Fund House</th>
+                <th>Scheme Type</th>
+                <th>Nav</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each apiResponses}}
+            <tr>
+                {{#each data}}
+                <td>{{date}}</td>
+                {{/each}}
+                <td>{{meta.scheme_name}}</td>
+                <td>{{meta.fund_house}}</td>
+                <td>{{meta.scheme_type}}</td>
+                {{#each data}}
+                <td>{{nav}}</td>
+                {{/each}}
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </body>
+
 </html>
